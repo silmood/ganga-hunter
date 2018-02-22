@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="io.bunsan.gangahunter.GangaActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_ganga"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="70"
+            android:drawableLeft="@drawable/ic_ganga"
+            android:drawablePadding="4dp"
+            android:drawableStart="@drawable/ic_ganga"
+            android:hint="@string/hint_ganga_name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/input_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="30"
+            android:drawableLeft="@drawable/ic_price"
+            android:drawablePadding="4dp"
+            android:drawableStart="@drawable/ic_price"
+            android:hint="@string/hint_price"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/label_details"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input_place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="70"
+            android:drawableLeft="@drawable/ic_place"
+            android:drawablePadding="4dp"
+            android:drawableStart="@drawable/ic_place"
+            android:hint="@string/hint_place"
+            android:inputType="numberDecimal" />
+
+        <android.support.v7.widget.AppCompatButton xmlns:tools="http://schemas.android.com/tools"
+            style="@style/NormalButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="30"
+            android:textColor="#FFF"
+            android:theme="@style/NormalButton"
+            tools:text="Vence: 18/02/18" />
+    </LinearLayout>
+
+</LinearLayout>
