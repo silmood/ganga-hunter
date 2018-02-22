@@ -1,4 +1,4 @@
-package io.bunsan.gangahunter;
+package io.bunsan.gangahunter.common;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,7 +20,7 @@ public abstract class MandatoryListener implements TextWatcher{
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
 
-    abstract void onError();
+    public abstract void onError();
 
-    abstract void onText(String text);
+    public abstract void onText(String text);
 }

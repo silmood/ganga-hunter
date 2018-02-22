@@ -1,4 +1,4 @@
-package io.bunsan.gangahunter;
+package io.bunsan.gangahunter.common;
 
 
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+
+import io.bunsan.gangahunter.R;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
@@ -31,5 +33,5 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         }
     }
 
-    abstract Fragment getFragment();
+    public abstract Fragment getFragment();
 }

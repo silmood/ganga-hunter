@@ -1,20 +1,22 @@
-package io.bunsan.gangahunter;
+package io.bunsan.gangahunter.detail;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import io.bunsan.gangahunter.R;
+import io.bunsan.gangahunter.common.MandatoryListener;
+import io.bunsan.gangahunter.model.Ganga;
 
 
 public class GangaFragment extends Fragment {
+
+    public static final String TAG = "ganga_detail";
 
     private Ganga ganga;
 
@@ -44,32 +46,39 @@ public class GangaFragment extends Fragment {
         inputName = view.findViewById(R.id.input_name);
         inputPrice = view.findViewById(R.id.input_price);
 
+
         setupInputs();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     private void setupInputs() {
         inputName.addTextChangedListener(new MandatoryListener() {
             @Override
-            void onError() {
+            public void onError() {
                 String error = getString(R.string.error_empty);
                 inputName.setError(error);
             }
 
             @Override
-            void onText(String text) {
+            public void onText(String text) {
                 ganga.setName(text);
             }
         });
 
         inputPrice.addTextChangedListener(new MandatoryListener() {
             @Override
-            void onError() {
+            public void onError() {
                 String error = getString(R.string.error_empty);
                 inputPrice.setError(error);
             }
 
             @Override
-            void onText(String text) {
+            public void onText(String text) {
                 ganga.setPrice(Float.valueOf(text));
             }
         });

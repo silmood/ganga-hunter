@@ -1,12 +1,14 @@
-package io.bunsan.gangahunter;
+package io.bunsan.gangahunter.detail;
 
 import android.support.v4.app.Fragment;
+
+import io.bunsan.gangahunter.common.SingleFragmentActivity;
 
 
 public class GangaActivity extends SingleFragmentActivity {
 
     @Override
-    Fragment getFragment() {
+    public Fragment getFragment() {
         return new GangaFragment();
     }
 }

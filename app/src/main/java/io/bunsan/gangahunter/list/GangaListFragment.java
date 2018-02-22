@@ -1,4 +1,4 @@
-package io.bunsan.gangahunter;
+package io.bunsan.gangahunter.list;
 
 
 import android.os.Bundle;
@@ -6,14 +6,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-public class GangaListFragment extends Fragment {
+import io.bunsan.gangahunter.R;
+import io.bunsan.gangahunter.model.Ganga;
+import io.bunsan.gangahunter.model.GangaHistory;
+
+public class GangaListFragment extends Fragment implements GangaViewHolder.OnItemClickListener {
 
     private ArrayList<Ganga> dummies;
 
@@ -32,23 +36,21 @@ public class GangaListFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         list.setLayoutManager(manager);
 
+        ArrayList<Ganga> dummyItems = GangaHistory
+                .getInstance()
+                .getHistory();
 
-        ArrayList<Ganga> dummyItems = getDummies();
-
-        GangaListAdapter adapter = new GangaListAdapter();
+        GangaListAdapter adapter = new GangaListAdapter(this);
         adapter.setGangas(dummyItems);
 
         list.setAdapter(adapter);
+
+
     }
 
-    public ArrayList<Ganga> getDummies() {
-        ArrayList<Ganga> gangas = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++) {
-            Ganga ganga = new Ganga("Ganga # " + i, 10F);
-            gangas.add(ganga);
-        }
-
-        return gangas;
+    @Override
+    public void onItemClicked() {
+        Log.d(GangaListFragment.class.getSimpleName()
+                , "It's works!");
     }
 }

@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GangaActivity"/>
+        <activity android:name=".detail.GangaActivity">
 
-        <activity android:name=".GangaListActivity">
+        </activity>
+
+        <activity android:name=".list.GangaListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

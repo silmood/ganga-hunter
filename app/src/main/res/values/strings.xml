@@ -6,4 +6,6 @@
     <string name="label_ganga">Ganga</string>
     <string name="label_details">Detalles</string>
     <string name="hint_place">¿Dónde se encuentra?</string>
+
+    <string name="format_date">Vence: %s</string>
 </resources>
