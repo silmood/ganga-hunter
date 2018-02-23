@@ -54,7 +54,7 @@
         android:drawablePadding="4dp"
         android:drawableStart="@drawable/ic_place"
         android:hint="@string/hint_place"
-        android:inputType="numberDecimal" />
+        android:inputType="text" />
 
     <android.support.v7.widget.AppCompatButton xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/btn_date"

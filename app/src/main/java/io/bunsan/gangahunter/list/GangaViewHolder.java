@@ -20,6 +20,8 @@ public class GangaViewHolder extends RecyclerView.ViewHolder {
     private TextView labelPlace;
     private TextView labelDueDate;
 
+    private Ganga ganga;
+
     private OnItemClickListener listener = null;
 
 
@@ -30,7 +32,8 @@ public class GangaViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if (listener != null){
-                    listener.onItemClicked();
+                    int position = getAdapterPosition();
+                    listener.onItemClicked(position, ganga);
                 }
             }
         });
@@ -46,6 +49,8 @@ public class GangaViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setGanga(Ganga ganga) {
+        this.ganga = ganga;
+
         labelName.setText(ganga.getName());
         labelPlace.setText(ganga.getPlace());
 
@@ -56,8 +61,7 @@ public class GangaViewHolder extends RecyclerView.ViewHolder {
         labelPrice.setText(formattedPrice);
 
         // Formatear fecha
-        DateFormat format = new SimpleDateFormat(FORMAT_DATE);
-        String formattedDate = format.format(ganga.getDueDate());
+        String formattedDate = ganga.getDueDateFormatted();
 
         // Formatear etiqueta de texto de fecha
         String labelDateFormat = itemView.getContext()
@@ -70,6 +74,6 @@ public class GangaViewHolder extends RecyclerView.ViewHolder {
     }
 
     public interface OnItemClickListener {
-        void onItemClicked();
+        void onItemClicked(int position, Ganga item);
     }
 }

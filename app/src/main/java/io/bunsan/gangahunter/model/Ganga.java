@@ -1,10 +1,14 @@
 package io.bunsan.gangahunter.model;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
 public class Ganga {
+
+    public static final String FORMAT_DATE = "dd/MM/yy";
 
     private String id;
     private String name;
@@ -28,6 +32,10 @@ public class Ganga {
         this.place = "";
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,6 +54,14 @@ public class Ganga {
 
     public Date getDueDate() {
         return dueDate;
+    }
+
+    public String getDueDateFormatted() {
+        // Formatear fecha
+        DateFormat format = new SimpleDateFormat(FORMAT_DATE);
+        String formattedDate = format.format(dueDate);
+
+        return formattedDate;
     }
 
     public void setDueDate(Date dueDate) {

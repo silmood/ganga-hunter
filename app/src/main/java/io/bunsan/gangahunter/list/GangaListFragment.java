@@ -1,6 +1,7 @@
 package io.bunsan.gangahunter.list;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,12 +15,15 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import io.bunsan.gangahunter.R;
+import io.bunsan.gangahunter.detail.GangaActivity;
 import io.bunsan.gangahunter.model.Ganga;
 import io.bunsan.gangahunter.model.GangaHistory;
 
 public class GangaListFragment extends Fragment implements GangaViewHolder.OnItemClickListener {
 
     private ArrayList<Ganga> dummies;
+
+    private GangaListAdapter adapter;
 
     @Nullable
     @Override
@@ -40,17 +44,22 @@ public class GangaListFragment extends Fragment implements GangaViewHolder.OnIte
                 .getInstance()
                 .getHistory();
 
-        GangaListAdapter adapter = new GangaListAdapter(this);
+        adapter = new GangaListAdapter(this);
         adapter.setGangas(dummyItems);
 
         list.setAdapter(adapter);
 
-
     }
 
     @Override
-    public void onItemClicked() {
-        Log.d(GangaListFragment.class.getSimpleName()
-                , "It's works!");
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClicked(int position, Ganga ganga) {
+        Intent intent = GangaActivity.getIntent(getContext(), ganga.getId());
+        startActivity(intent);
     }
 }

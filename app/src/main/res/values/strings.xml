@@ -8,4 +8,6 @@
     <string name="hint_place">¿Dónde se encuentra?</string>
 
     <string name="format_date">Vence: %s</string>
+    <string name="title_date_picker">Seleccionar fecha</string>
+    <string name="label_accept">Aceptar</string>
 </resources>

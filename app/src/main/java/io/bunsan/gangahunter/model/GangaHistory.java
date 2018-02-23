@@ -1,6 +1,8 @@
 package io.bunsan.gangahunter.model;
 
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 
 public class GangaHistory {
@@ -20,6 +22,18 @@ public class GangaHistory {
 
     public ArrayList<Ganga> getHistory() {
         return history;
+    }
+
+    @Nullable
+    public Ganga findGangaById(String id) {
+
+        for (Ganga ganga:
+             history) {
+            if (ganga.getId().equals(id))
+                return ganga;
+        }
+
+        return null;
     }
 
     private ArrayList<Ganga> dummyItems() {
