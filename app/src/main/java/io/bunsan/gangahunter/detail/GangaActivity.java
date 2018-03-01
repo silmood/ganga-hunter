@@ -1,10 +1,13 @@
 package io.bunsan.gangahunter.detail;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import io.bunsan.gangahunter.common.SingleFragmentActivity;
+import io.bunsan.gangahunter.list.GangaListFragment;
 
 
 public class GangaActivity extends SingleFragmentActivity {

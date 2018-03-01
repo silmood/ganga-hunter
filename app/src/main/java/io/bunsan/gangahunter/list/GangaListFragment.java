@@ -7,8 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,15 +23,46 @@ import io.bunsan.gangahunter.model.GangaHistory;
 
 public class GangaListFragment extends Fragment implements GangaViewHolder.OnItemClickListener {
 
+    public static final int CODE_EDIT_GANGA = 101;
+    public static final String KEY_POSITION = "ganga_position";
+
     private ArrayList<Ganga> dummies;
 
     private GangaListAdapter adapter;
+
+    private int lastItemEdited = -1;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
+            Ganga ganga = GangaHistory.getInstance(getContext()).createGanga();
+            adapter.addGanga(ganga);
+
+            lastItemEdited = adapter.getItemCount() - 1;
+            launchGangaForm(ganga.getId());
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -41,7 +74,7 @@ public class GangaListFragment extends Fragment implements GangaViewHolder.OnIte
         list.setLayoutManager(manager);
 
         ArrayList<Ganga> dummyItems = GangaHistory
-                .getInstance()
+                .getInstance(getContext())
                 .getHistory();
 
         adapter = new GangaListAdapter(this);
@@ -54,12 +87,21 @@ public class GangaListFragment extends Fragment implements GangaViewHolder.OnIte
     @Override
     public void onResume() {
         super.onResume();
-        adapter.notifyDataSetChanged();
+
+        if (lastItemEdited != -1) {
+            adapter.notifyItemChanged(lastItemEdited);
+            lastItemEdited = - 1;
+        }
     }
 
     @Override
     public void onItemClicked(int position, Ganga ganga) {
-        Intent intent = GangaActivity.getIntent(getContext(), ganga.getId());
+        lastItemEdited = position;
+        launchGangaForm(ganga.getId());
+    }
+
+    private void launchGangaForm(String id) {
+        Intent intent = GangaActivity.getIntent(getContext(), id);
         startActivity(intent);
     }
 }

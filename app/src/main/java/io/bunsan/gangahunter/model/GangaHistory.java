@@ -1,23 +1,33 @@
 package io.bunsan.gangahunter.model;
 
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
 public class GangaHistory {
 
-    private static final GangaHistory ourInstance = new GangaHistory();
+    private static GangaHistory ourInstance;
 
     private static ArrayList<Ganga> history;
 
-    public static GangaHistory getInstance() {
+    public static GangaHistory getInstance(Context context) {
+        if (ourInstance == null){
+            ourInstance = new GangaHistory(context);
+        }
+
         return ourInstance;
     }
 
-    private GangaHistory() {
+    private SQLiteDatabase db;
+
+    private GangaHistory(Context context) {
         history = new ArrayList<>();
-        history.addAll(dummyItems());
+        GangaDBOpenHelper openHelper = new GangaDBOpenHelper(context);
+        db = openHelper.getWritableDatabase();
     }
 
     public ArrayList<Ganga> getHistory() {
@@ -34,6 +44,14 @@ public class GangaHistory {
         }
 
         return null;
+    }
+
+    @Nullable
+    public Ganga createGanga() {
+        Ganga createdGanga = new Ganga();
+        history.add(createdGanga);
+
+        return createdGanga;
     }
 
     private ArrayList<Ganga> dummyItems() {

@@ -52,4 +52,9 @@ public class GangaListAdapter extends RecyclerView.Adapter<GangaViewHolder> {
         this.gangas.clear();
         this.gangas.addAll(gangas);
     }
+
+    public void addGanga(Ganga ganga) {
+        this.gangas.add(ganga);
+        notifyItemInserted(this.gangas.size() - 1);
+    }
 }
